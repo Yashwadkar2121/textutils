@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Textutils
+          {props.title}
         </a>
         <button
           className="navbar-toggler"
@@ -38,3 +39,11 @@ function Navbar() {
 }
 
 export default Navbar;
+
+// Proptype (string,object,arrey,number) --> (impt) snippets
+Navbar.prototype = { title: PropTypes.string.isRequired };
+
+// Default Props
+Navbar.prototype = {
+  title: "Set title value",
+};
