@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function TextForm(props) {
   //   text = "new text"; Wrong way to change the state
-  const [text, setText] = useState("Enter Your Text Here");
+  const [text, setText] = useState("");
   //   setText = ("new text") ; Correct way to cahnge the state
 
   const handleOnChange = (event) => {
@@ -38,7 +38,8 @@ function TextForm(props) {
   const handleCapitalization = () => {
     let newText = text.split(" ");
     for (let i = 0; i < newText.length; i++) {
-      newText[i] = newText[i].charAt(0).toUpperCase() + newText[i].slice(1);
+      newText[i] =
+        newText[i].charAt(0).toUpperCase() + newText[i].slice(1).toLowerCase();
     }
     let newText2 = newText.join(" ");
     setText(newText2);
@@ -47,7 +48,9 @@ function TextForm(props) {
     <>
       {/* Creating a textarea */}
       <div>
-        <h1>{props.heading}</h1>
+        <h1 style={{ color: props.mode === "dark" ? "white" : "black" }}>
+          {props.heading}
+        </h1>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -55,6 +58,10 @@ function TextForm(props) {
             rows="8"
             value={text}
             onChange={handleOnChange}
+            style={{
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
+              color: props.mode === "dark" ? "white" : "black",
+            }}
           ></textarea>
         </div>
       </div>
@@ -89,7 +96,10 @@ function TextForm(props) {
         </button>
       </div>
       {/* Text Summary section */}
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
         <h1>Your Text Summary</h1>
         <p>
           <b>
@@ -100,8 +110,7 @@ function TextForm(props) {
               }).length
             }
           </b>{" "}
-          Words and
-          <b>{text.length}</b> Characters
+          Words and <b>{text.length}</b> Characters
         </p>
         <p>{0.008 * text.split(" ").length} Minutes Read</p>
 
