@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function TextForm(props) {
   //   text = "new text"; Wrong way to change the state
-  const [text, setText] = useState("Enter Your Text Here");
+  const [text, setText] = useState("");
   //   setText = ("new text") ; Correct way to cahnge the state
 
   const handleOnChange = (event) => {
@@ -12,27 +12,32 @@ function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Uppercase !", "success");
   };
   //   To convert LowerCase
   const handleLowClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to Lowercase !", "success");
   };
   //   To Clear the Textarea
   const handleClearClick = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Clear the text !", "success");
   };
   //   To copy Text
   const handleCopyClick = () => {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Copy to Clipboard !", "success");
   };
   //   Remove Extra Spaces
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Remove Extra Spacces!", "success");
   };
   //   Capitalization
   const handleCapitalization = () => {
@@ -42,12 +47,15 @@ function TextForm(props) {
     }
     let newText2 = newText.join(" ");
     setText(newText2);
+    props.showAlert(" Capitalization The text!", "success");
   };
   return (
     <>
       {/* Creating a textarea */}
       <div>
-        <h1>{props.heading}</h1>
+        <h1 style={{ color: props.mode === "dark" ? "white" : "black" }}>
+          {props.heading}
+        </h1>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -55,7 +63,13 @@ function TextForm(props) {
             rows="8"
             value={text}
             onChange={handleOnChange}
-          ></textarea>
+            style={{
+              backgroundColor: props.mode === "dark" ? "#195693" : "white",
+              color: props.mode === "dark" ? "white" : "black",
+            }}
+          >
+            {props.heading}
+          </textarea>
         </div>
       </div>
       {/* Buttons Section */}
@@ -89,7 +103,10 @@ function TextForm(props) {
         </button>
       </div>
       {/* Text Summary section */}
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "black" }}
+      >
         <h1>Your Text Summary</h1>
         <p>
           <b>
@@ -100,14 +117,13 @@ function TextForm(props) {
               }).length
             }
           </b>{" "}
-          Words and
-          <b>{text.length}</b> Characters
+          Words and <b>{text.length}</b> Characters
         </p>
         <p>{0.008 * text.split(" ").length} Minutes Read</p>
 
         {/* Start Preview Section */}
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? "Enter Some Your Text To Preview" : text}</p>
       </div>
     </>
   );
