@@ -7,39 +7,33 @@ import Alert from "./Components/03-Alert";
 function App() {
   // Enable Dark Mode And Light Mode
   const [mode, setMode] = useState("light"); //Whther dark mode is enabled or not
-import React, { useState } from "react";
 
-function App() {
-  // Enable Dark Mode And Light Mode
-  const [mode, setMode] = useState("light"); // Whether dark is enabled or not
-  const toggleMode = () => {
-    if (mode === "light") {
-      setMode("dark");
-      document.body.style.backgroundColor = "#05213c";
-      showAlert("Dark mode has been enbled", "success");
-    } else {
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-      showAlert("Light mode has been enbled", "success");
-    }
-  };
-  // Enable Alert's
-  const [alert, setAlert] = useState(null);
-  const showAlert = (message, type) => {
-    setAlert({
-      msg: message,
-      type: type,
-    });
-    setTimeout(() => {
-      setAlert(null);
-    }, 1500);
-  };
-    } else {
-      setMode("light");
-      document.body.style.backgroundColor = "white";
-    }
-  };
-
+  function App() {
+    // Enable Dark Mode And Light Mode
+    const [mode, setMode] = useState("light"); // Whether dark is enabled or not
+    const toggleMode = () => {
+      if (mode === "light") {
+        setMode("dark");
+        document.body.style.backgroundColor = "#05213c";
+        showAlert("Dark mode has been enbled", "success");
+      } else {
+        setMode("light");
+        document.body.style.backgroundColor = "white";
+        showAlert("Light mode has been enbled", "success");
+      }
+    };
+    // Enable Alert's
+    const [alert, setAlert] = useState(null);
+    const showAlert = (message, type) => {
+      setAlert({
+        msg: message,
+        type: type,
+      });
+      setTimeout(() => {
+        setAlert(null);
+      }, 1500);
+    };
+  }
   return (
     <div>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
