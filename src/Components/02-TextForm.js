@@ -118,7 +118,7 @@ function TextForm(props) {
 
         {/* Start Preview Section */}
         <h2>Preview</h2>
-        <p>{text.length > 0 ? "Enter Some Your Text To Preview" : text}</p>
+        <p>{text.length > 0 ? text : "Enter Some Your Text To Preview"}</p>
       </div>
     </>
   );
