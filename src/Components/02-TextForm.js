@@ -12,27 +12,32 @@ function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to UpperCase!", "success");
   };
   //   To convert LowerCase
   const handleLowClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to LowerCase!", "success");
   };
   //   To Clear the Textarea
   const handleClearClick = () => {
     let newText = "";
     setText(newText);
+    props.showAlert("Clear The Text!", "success");
   };
   //   To copy Text
   const handleCopyClick = () => {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Copied to Clipbored!", "success");
   };
   //   Remove Extra Spaces
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Remove the Extra Spaces", "success");
   };
   //   Capitalization
   const handleCapitalization = () => {
@@ -43,6 +48,7 @@ function TextForm(props) {
     }
     let newText2 = newText.join(" ");
     setText(newText2);
+    props.showAlert("Converted to Capitazation!", "success");
   };
   return (
     <>
