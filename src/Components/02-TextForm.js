@@ -12,32 +12,32 @@ function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
-    props.showAlert("Converted to UpperCase!", "success");
+    props.showAlert("Converted to Uppercase !", "success");
   };
   //   To convert LowerCase
   const handleLowClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
-    props.showAlert("Converted to LowerCase!", "success");
+    props.showAlert("Converted to Lowercase !", "success");
   };
   //   To Clear the Textarea
   const handleClearClick = () => {
     let newText = "";
     setText(newText);
-    props.showAlert("Clear The Text!", "success");
+    props.showAlert("Clear the text !", "success");
   };
   //   To copy Text
   const handleCopyClick = () => {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
-    props.showAlert("Copied to Clipbored!", "success");
+    props.showAlert("Copy to Clipboard !", "success");
   };
   //   Remove Extra Spaces
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
-    props.showAlert("Remove the Extra Spaces", "success");
+    props.showAlert("Remove Extra Spacces!", "success");
   };
   //   Capitalization
   const handleCapitalization = () => {
@@ -48,7 +48,7 @@ function TextForm(props) {
     }
     let newText2 = newText.join(" ");
     setText(newText2);
-    props.showAlert("Converted to Capitazation!", "success");
+    props.showAlert(" Capitalization The text!", "success");
   };
   return (
     <>
@@ -64,10 +64,6 @@ function TextForm(props) {
             rows="8"
             value={text}
             onChange={handleOnChange}
-            style={{
-              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
-              color: props.mode === "dark" ? "white" : "black",
-            }}
           ></textarea>
         </div>
       </div>
@@ -122,7 +118,7 @@ function TextForm(props) {
 
         {/* Start Preview Section */}
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? "Enter Some Your Text To Preview" : text}</p>
       </div>
     </>
   );
