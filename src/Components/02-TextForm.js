@@ -43,7 +43,8 @@ function TextForm(props) {
   const handleCapitalization = () => {
     let newText = text.split(" ");
     for (let i = 0; i < newText.length; i++) {
-      newText[i] = newText[i].charAt(0).toUpperCase() + newText[i].slice(1);
+      newText[i] =
+        newText[i].charAt(0).toUpperCase() + newText[i].slice(1).toLowerCase();
     }
     let newText2 = newText.join(" ");
     setText(newText2);
@@ -63,13 +64,7 @@ function TextForm(props) {
             rows="8"
             value={text}
             onChange={handleOnChange}
-            style={{
-              backgroundColor: props.mode === "dark" ? "#195693" : "white",
-              color: props.mode === "dark" ? "white" : "black",
-            }}
-          >
-            {props.heading}
-          </textarea>
+          ></textarea>
         </div>
       </div>
       {/* Buttons Section */}
