@@ -28,9 +28,7 @@ function TextForm(props) {
   };
   //   To copy Text
   const handleCopyClick = () => {
-    let text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
     props.showAlert("Copy to Clipboard !", "success");
   };
   //   Remove Extra Spaces
@@ -69,30 +67,45 @@ function TextForm(props) {
       </div>
       {/* Buttons Section */}
       <div>
-        <button className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
+        <button
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleUpClick}
+          disabled={text.length === 0}
+        >
           Convert To Uppercase
         </button>
-        <button className="btn btn-primary mx-2 my-1" onClick={handleLowClick}>
+        <button
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleLowClick}
+          disabled={text.length === 0}
+        >
           Convert To Lowercase
         </button>
         <button
           className="btn btn-primary mx-2 my-1"
           onClick={handleClearClick}
+          disabled={text.length === 0}
         >
           Clear
         </button>
-        <button className="btn btn-primary mx-2 my-1" onClick={handleCopyClick}>
+        <button
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleCopyClick}
+          disabled={text.length === 0}
+        >
           Copy Text
         </button>
         <button
           className="btn btn-primary mx-2 my-1"
           onClick={handleExtraSpaces}
+          disabled={text.length === 0}
         >
           Remove Extra Spaces
         </button>
         <button
           className="btn btn-primary mx-2 my-1"
           onClick={handleCapitalization}
+          disabled={text.length === 0}
         >
           Capitalization
         </button>
@@ -102,19 +115,25 @@ function TextForm(props) {
         className="container my-3"
         style={{ color: props.mode === "dark" ? "white" : "black" }}
       >
-        <h1>Your Text Summary</h1>
+        <h2>Your Text Summary</h2>
         <p>
           <b>
             {/* Fix the 0 Word count by filter()  Function*/}
             {
-              text.split(" ").filter((ele) => {
+              text.split(/\s+/).filter((ele) => {
                 return ele.length !== 0;
               }).length
             }
           </b>{" "}
           Words and <b>{text.length}</b> Characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes Read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((ele) => {
+              return ele.length !== 0;
+            }).length}{" "}
+          Minutes Read
+        </p>
 
         {/* Start Preview Section */}
         <h2>Preview</h2>
