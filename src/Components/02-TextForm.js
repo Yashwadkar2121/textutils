@@ -62,6 +62,10 @@ function TextForm(props) {
             rows="8"
             value={text}
             onChange={handleOnChange}
+            style={{
+              color: props.mode === "dark" ? "white" : "black",
+              backgroundColor: props.mode === "dark" ? "#1873c3" : "white",
+            }}
           ></textarea>
         </div>
       </div>
