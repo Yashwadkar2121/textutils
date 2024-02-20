@@ -39,7 +39,7 @@ function TextForm(props) {
   };
   //   Capitalization
   const handleCapitalization = () => {
-    let newText = text.split(" ");
+    let newText = text.split("/s\t/");
     for (let i = 0; i < newText.length; i++) {
       newText[i] =
         newText[i].charAt(0).toUpperCase() + newText[i].slice(1).toLowerCase();
@@ -133,7 +133,7 @@ function TextForm(props) {
         </p>
         <p>
           {0.008 *
-            text.split(" ").filter((ele) => {
+            text.split("/s\t/").filter((ele) => {
               return ele.length !== 0;
             }).length}{" "}
           Minutes Read
